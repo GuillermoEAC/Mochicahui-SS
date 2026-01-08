@@ -73,10 +73,9 @@ export const rutaGastronomica = [
   {
     id: 1,
     nombre: "Birrieria El Chivo de Oro",
-    tipo: "Rico desayuno, nada como comenzar tu dia con una buena birria",
-    historia:
-      "Doña Juana comenzó vendiendo gorditas de harina hace 40 años bajo el árbol de mezquite. Hoy, sus nietas siguen la receta secreta del guiso de chicharrón.",
-    img: "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?q=80&w=2070",
+    tipo: "Restaurante",
+    historia: "Rico desayuno, nada como comenzar tu dia con una buena birria",
+    img: "",
     coordenadas: "Centro Histórico",
 
     busquedaMapa: "Birrieria El Chivo de Oro,",
@@ -86,7 +85,7 @@ export const rutaGastronomica = [
     nombre: "Mariscos El Wero Liki",
     tipo: "Mariscos",
     historia: "Reconocido restaurante de mariscos en la region  ",
-    img: "https://images.unsplash.com/photo-1574653853027-538600706cae?q=80&w=2067",
+    img: "",
     coordenadas: "Mariscos El Wero Liki",
     busquedaMapa: "Iglesia de Mochicahui, Sinaloa", // Usamos referencias cercanas
   },
@@ -96,7 +95,7 @@ export const rutaGastronomica = [
     tipo: "Postres y Antojitos",
     historia:
       "Conocida por ser una cafeteria linda con ricos pasteles y buena comida, ideal para una primera cita o chismecito con amigos",
-    img: "https://images.unsplash.com/photo-1598511726623-d2004cc40455?q=80&w=2080",
+    img: "",
     coordenadas: "Reposteria y Café Libier",
     busquedaMapa: "Reposteria y Café Libier",
   },
