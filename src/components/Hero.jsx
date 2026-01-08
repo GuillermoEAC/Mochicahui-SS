@@ -1,14 +1,15 @@
 import React from "react";
 import { infoPueblo } from "../data/puebloData";
-
+import img from "../assets/Mochicahui_Principal.jpg";
 const Hero = () => {
   return (
     <div className="relative h-screen flex items-center justify-center">
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?q=80&w=2070')",
+          // backgroundImage:
+          //   "url('https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?q=80&w=2070')",
+          backgroundImage: `url(${img})`,
         }}
       >
         <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]"></div>

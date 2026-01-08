@@ -4,6 +4,10 @@ import Hero from "./components/Hero";
 import History from "./components/History";
 import Events from "./components/Events";
 import Footer from "./components/Footer";
+import Gallery from "./components/Gallery";
+import Location from "./components/Location";
+import Gastronomy from "./components/Gastronomy";
+import GastronomicRoute from "./components/GastronomicRoute";
 
 function App() {
   return (
@@ -12,7 +16,11 @@ function App() {
       <main>
         <Hero />
         <History />
+        <GastronomicRoute />
+        <Gastronomy />
         <Events />
+        <Gallery />
+        <Location />
       </main>
       <Footer />
     </div>
