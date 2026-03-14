@@ -73,10 +73,11 @@ export const gastronomia = [
     id: 1,
     platillo: "Birria",
     descripcion:
-      "El caldo ceremonial por excelencia de la cultura Yoreme. Preparado con carne de res, garbanzo y verduras frescas.",
+      "La birria es un platillo tradicional mexicano hecho principalmente de chivo, carnero, o res. La carne se marina en un adobo hecho de vinagre, chiles secos, ajos, hierbas, y sal.",
     imagen: imgPlatilloChivo,
   },
   {
+
     id: 2,
     platillo: "Tortillas de Harina",
     descripcion:
