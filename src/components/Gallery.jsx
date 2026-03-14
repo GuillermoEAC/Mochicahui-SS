@@ -1,52 +1,45 @@
 import React from "react";
+import { galeriaImagenes } from "../data/puebloData";
+import { Images } from "lucide-react";
 
 const Gallery = () => {
   return (
-    <section id="galeria" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 mb-12 text-center">
-        <h2 className="text-4xl font-serif font-bold text-gray-900">
-          Rincones Mágicos
-        </h2>
-        <p className="text-gray-500 mt-2">
-          Capturando la esencia de nuestras calles.
-        </p>
-      </div>
-
-      {/* Grid irregular para efecto moderno */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-7xl mx-auto px-4 h-[600px]">
-        {/* Foto Grande Izquierda */}
-        <div className="col-span-2 row-span-2 relative group overflow-hidden rounded-xl">
-          <img
-            src="https://images.unsplash.com/photo-1518659685715-462152865b20?q=80&w=2070"
-            className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
-            alt="Iglesia"
-          />
-          <div className="absolute inset-0 bg-black/30 group-hover:bg-transparent transition"></div>
+    <section id="galeria" className="py-24 bg-gray-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Encabezado */}
+        <div className="text-center mb-14">
+          <div className="flex items-center justify-center gap-3 mb-3">
+            <Images size={28} className="text-mexico-yellow" />
+            <h2 className="text-4xl font-serif font-bold text-white">
+              Rincones Mágicos
+            </h2>
+          </div>
+          <p className="text-gray-400 mt-2 max-w-xl mx-auto">
+            Capturando la esencia de nuestras calles, tradiciones y sabores.
+          </p>
+          <div className="w-20 h-0.5 bg-mexico-yellow mx-auto mt-4" />
         </div>
 
-        {/* Fotos Pequeñas */}
-        <div className="col-span-1 row-span-1 overflow-hidden rounded-xl">
-          <img
-            src="https://images.unsplash.com/photo-1605648873993-9c878985161f?q=80&w=2070"
-            className="w-full h-full object-cover hover:scale-110 transition duration-500"
-            alt="Detalle"
-          />
-        </div>
-        <div className="col-span-1 row-span-1 overflow-hidden rounded-xl">
-          <img
-            src="https://images.unsplash.com/photo-1585640369877-3e4b78759367?q=80&w=1974"
-            className="w-full h-full object-cover hover:scale-110 transition duration-500"
-            alt="Calle"
-          />
-        </div>
-
-        {/* Foto Ancha Abajo */}
-        <div className="col-span-2 row-span-1 overflow-hidden rounded-xl">
-          <img
-            src="https://images.unsplash.com/photo-1566415273775-4c077b94b0a4?q=80&w=2071"
-            className="w-full h-full object-cover hover:scale-110 transition duration-500"
-            alt="Paisaje"
-          />
+        {/* Grid masonry irregular */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 auto-rows-[200px]">
+          {galeriaImagenes.map((item, i) => (
+            <div
+              key={i}
+              className={`${item.span} overflow-hidden rounded-xl relative group cursor-pointer`}
+            >
+              <img
+                src={item.src}
+                alt={item.alt}
+                className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+              />
+              {/* Overlay con caption */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-500 flex items-end p-4">
+                <p className="text-white text-sm font-semibold tracking-wide">
+                  {item.alt}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

@@ -1,38 +1,65 @@
 import React from "react";
 import { infoPueblo } from "../data/puebloData";
-import img from "../assets/Mochicahui_Principal.jpg";
+import imgPrincipal from "../assets/Mochicahui_Principal.jpg";
+import { ChevronDown } from "lucide-react";
+
 const Hero = () => {
   return (
-    <div className="relative h-screen flex items-center justify-center">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          // backgroundImage:
-          //   "url('https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?q=80&w=2070')",
-          backgroundImage: `url(${img})`,
-        }}
-      >
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]"></div>
+    <div className="relative h-screen flex items-center justify-center overflow-hidden">
+      {/* Imagen de fondo */}
+      <div className="absolute inset-0">
+        <img
+          src={imgPrincipal}
+          alt="Vista principal de Mochicahui"
+          className="w-full h-full object-cover object-center"
+        />
+        {/* Gradiente oscuro */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
       </div>
 
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto mt-16">
-        <span className="text-mexico-yellow font-bold tracking-[0.2em] uppercase text-sm md:text-base mb-2 block animate-pulse">
-          Bienvenidos a
-        </span>
-        <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-6 drop-shadow-xl">
+      {/* Contenido central */}
+      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+        {/* Etiqueta superior */}
+        <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-mexico-yellow text-xs font-bold tracking-[0.25em] uppercase px-4 py-2 rounded-full mb-8">
+          <span className="w-1.5 h-1.5 rounded-full bg-mexico-yellow animate-pulse" />
+          Pueblo Mágico · El Fuerte, Sinaloa
+        </div>
+
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white mb-6 drop-shadow-2xl leading-none">
           {infoPueblo.nombre}
         </h1>
-        <p className="text-lg md:text-2xl text-gray-100 mb-10 font-light">
+
+        <p className="text-lg md:text-2xl text-gray-200 mb-10 font-light max-w-2xl mx-auto leading-relaxed">
           {infoPueblo.slogan}
         </p>
-        <a
-          href="#eventos"
-          className="bg-mexico-yellow text-gray-900 font-bold py-3 px-8 rounded-full hover:bg-yellow-400 transition transform hover:scale-105 shadow-xl border-2 border-transparent hover:border-white"
-        >
-          Descubrir Agenda
-        </a>
+
+        {/* Botones CTA */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="#ruta-gastronomica"
+            className="bg-mexico-yellow text-gray-900 font-bold py-4 px-8 rounded-full hover:bg-yellow-400 transition-all duration-300 hover:scale-105 shadow-2xl text-base"
+          >
+            Descubrir Gastronomía
+          </a>
+          <a
+            href="#historia"
+            className="bg-white/10 backdrop-blur-sm border border-white/30 text-white font-bold py-4 px-8 rounded-full hover:bg-white/20 transition-all duration-300 text-base"
+          >
+            Nuestra Historia
+          </a>
+        </div>
       </div>
+
+      {/* Scroll indicator */}
+      <a
+        href="#historia"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 hover:text-white transition-colors animate-bounce"
+        aria-label="Scroll hacia abajo"
+      >
+        <ChevronDown size={36} />
+      </a>
     </div>
   );
 };
+
 export default Hero;

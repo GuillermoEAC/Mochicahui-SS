@@ -6,14 +6,38 @@ import {
   BookOpen,
   Map,
   Image as ImageIcon,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 const GastronomicRoute = () => {
   const [paradaActiva, setParadaActiva] = useState(rutaGastronomica[0]);
-  const [modoVista, setModoVista] = useState("foto"); // 'foto' o 'mapa'
+  const [modoVista, setModoVista] = useState("foto");
+  const [fotoIndex, setFotoIndex] = useState(0);
+
+  const handleSelectParada = (parada) => {
+    setParadaActiva(parada);
+    setModoVista("foto");
+    setFotoIndex(0);
+  };
+
+  const galeria = paradaActiva.galeria || [paradaActiva.img];
+  const totalFotos = galeria.length;
+
+  const irAnterior = () =>
+    setFotoIndex((prev) => (prev - 1 + totalFotos) % totalFotos);
+  const irSiguiente = () =>
+    setFotoIndex((prev) => (prev + 1) % totalFotos);
 
   return (
-    <section id="ruta-gastronomica" className="py-20 bg-orange-50">
+    <section
+      id="ruta-gastronomica"
+      className="py-20 relative"
+      style={{
+        backgroundColor: "#fff7ed",
+        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cline x1='0' y1='32' x2='32' y2='0' stroke='%23B54B26' stroke-width='0.5' stroke-opacity='0.1'/%3E%3Cline x1='-16' y1='32' x2='16' y2='0' stroke='%23B54B26' stroke-width='0.5' stroke-opacity='0.1'/%3E%3Cline x1='16' y1='32' x2='48' y2='0' stroke='%23B54B26' stroke-width='0.5' stroke-opacity='0.1'/%3E%3C/svg%3E")`,
+      }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Encabezado */}
         <div className="text-center mb-12">
@@ -22,8 +46,7 @@ const GastronomicRoute = () => {
             Ruta del Sabor
           </h2>
           <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
-            Selecciona un punto en la lista para ver su historia y ubicación
-            exacta.
+            Selecciona un punto en la lista para ver sus fotos y ubicación exacta.
           </p>
         </div>
 
@@ -38,35 +61,32 @@ const GastronomicRoute = () => {
                 {rutaGastronomica.map((parada, index) => (
                   <div
                     key={parada.id}
-                    onClick={() => {
-                      setParadaActiva(parada);
-                      setModoVista("foto"); // Resetear a foto al cambiar
-                    }}
-                    className={`flex items-center gap-4 cursor-pointer p-3 rounded-lg transition-all duration-200 ${
-                      paradaActiva.id === parada.id
-                        ? "bg-mexico-pink/10 border-l-4 border-mexico-pink"
-                        : "hover:bg-gray-100 border-l-4 border-transparent"
-                    }`}
+                    onClick={() => handleSelectParada(parada)}
+                    className={`flex items-center gap-4 cursor-pointer p-3 rounded-lg transition-all duration-200 ${paradaActiva.id === parada.id
+                      ? "bg-mexico-pink/10 border-l-4 border-mexico-pink"
+                      : "hover:bg-gray-100 border-l-4 border-transparent"
+                      }`}
                   >
                     <div
-                      className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${
-                        paradaActiva.id === parada.id
-                          ? "bg-mexico-pink text-white"
-                          : "bg-gray-200 text-gray-500"
-                      }`}
+                      className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0 ${paradaActiva.id === parada.id
+                        ? "bg-mexico-pink text-white"
+                        : "bg-gray-200 text-gray-500"
+                        }`}
                     >
                       {index + 1}
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <h4
-                        className={`font-bold text-sm ${
-                          paradaActiva.id === parada.id
-                            ? "text-mexico-pink"
-                            : "text-gray-700"
-                        }`}
+                        className={`font-bold text-sm truncate ${paradaActiva.id === parada.id
+                          ? "text-mexico-pink"
+                          : "text-gray-700"
+                          }`}
                       >
                         {parada.nombre}
                       </h4>
+                      <span className="text-xs text-gray-400 uppercase tracking-wide">
+                        {parada.tipo}
+                      </span>
                     </div>
                   </div>
                 ))}
@@ -74,44 +94,78 @@ const GastronomicRoute = () => {
             </div>
           </div>
 
-          {/* COLUMNA DERECHA: Tarjeta Interactiva con Mapa Real */}
+          {/* COLUMNA DERECHA: Tarjeta Interactiva */}
           <div className="lg:w-2/3">
             <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100 min-h-[500px] flex flex-col">
-              {/* Pestañas de Navegación (Foto vs Mapa) */}
+              {/* Pestañas */}
               <div className="flex border-b border-gray-100">
                 <button
                   onClick={() => setModoVista("foto")}
-                  className={`flex-1 py-4 font-bold text-sm uppercase tracking-wider flex items-center justify-center gap-2 transition-colors ${
-                    modoVista === "foto"
-                      ? "bg-white text-mexico-pink border-b-2 border-mexico-pink"
-                      : "bg-gray-50 text-gray-400 hover:bg-gray-100"
-                  }`}
+                  className={`flex-1 py-4 font-bold text-sm uppercase tracking-wider flex items-center justify-center gap-2 transition-colors ${modoVista === "foto"
+                    ? "bg-white text-mexico-pink border-b-2 border-mexico-pink"
+                    : "bg-gray-50 text-gray-400 hover:bg-gray-100"
+                    }`}
                 >
                   <ImageIcon size={18} /> Galería
                 </button>
                 <button
                   onClick={() => setModoVista("mapa")}
-                  className={`flex-1 py-4 font-bold text-sm uppercase tracking-wider flex items-center justify-center gap-2 transition-colors ${
-                    modoVista === "mapa"
-                      ? "bg-white text-mexico-blue border-b-2 border-mexico-blue"
-                      : "bg-gray-50 text-gray-400 hover:bg-gray-100"
-                  }`}
+                  className={`flex-1 py-4 font-bold text-sm uppercase tracking-wider flex items-center justify-center gap-2 transition-colors ${modoVista === "mapa"
+                    ? "bg-white text-mexico-blue border-b-2 border-mexico-blue"
+                    : "bg-gray-50 text-gray-400 hover:bg-gray-100"
+                    }`}
                 >
                   <Map size={18} /> Ubicación Real
                 </button>
               </div>
 
-              {/* Área de Visualización (Cambiante) */}
+              {/* Área de Visualización */}
               <div className="h-64 md:h-80 relative bg-gray-100">
                 {modoVista === "foto" ? (
-                  /* VISTA FOTO */
-                  <img
-                    src={paradaActiva.img}
-                    alt={paradaActiva.nombre}
-                    className="w-full h-full object-cover animate-fade-in"
-                  />
+                  <>
+                    <img
+                      key={`${paradaActiva.id}-${fotoIndex}`}
+                      src={galeria[fotoIndex]}
+                      alt={`${paradaActiva.nombre} - foto ${fotoIndex + 1}`}
+                      className="w-full h-full object-cover animate-fade-in"
+                    />
+
+                    {/* Flechas de navegación (solo si hay más de 1 foto) */}
+                    {totalFotos > 1 && (
+                      <>
+                        <button
+                          onClick={irAnterior}
+                          className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full p-2 transition-colors"
+                          aria-label="Foto anterior"
+                        >
+                          <ChevronLeft size={20} />
+                        </button>
+                        <button
+                          onClick={irSiguiente}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full p-2 transition-colors"
+                          aria-label="Foto siguiente"
+                        >
+                          <ChevronRight size={20} />
+                        </button>
+
+                        {/* Contador y puntos */}
+                        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2">
+                          {galeria.map((_, i) => (
+                            <button
+                              key={i}
+                              onClick={() => setFotoIndex(i)}
+                              className={`w-2 h-2 rounded-full transition-all ${i === fotoIndex
+                                ? "bg-white scale-125"
+                                : "bg-white/50"
+                                }`}
+                              aria-label={`Ir a foto ${i + 1}`}
+                            />
+                          ))}
+                        </div>
+                      </>
+                    )}
+                  </>
                 ) : (
-                  /* VISTA MAPA (IFRAME) */
                   <iframe
                     title="Mapa Gastronómico"
                     width="100%"
@@ -126,6 +180,28 @@ const GastronomicRoute = () => {
                   ></iframe>
                 )}
               </div>
+
+              {/* Thumbnails de la galería */}
+              {modoVista === "foto" && totalFotos > 1 && (
+                <div className="flex gap-2 px-6 pt-4 pb-1 overflow-x-auto">
+                  {galeria.map((foto, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setFotoIndex(i)}
+                      className={`flex-shrink-0 rounded-lg overflow-hidden transition-all duration-200 ${i === fotoIndex
+                        ? "ring-2 ring-mexico-pink ring-offset-2 opacity-100"
+                        : "opacity-60 hover:opacity-90"
+                        }`}
+                    >
+                      <img
+                        src={foto}
+                        alt={`Miniatura ${i + 1}`}
+                        className="w-16 h-12 object-cover"
+                      />
+                    </button>
+                  ))}
+                </div>
+              )}
 
               {/* Contenido Texto */}
               <div className="p-8 flex-1 flex flex-col justify-center">
