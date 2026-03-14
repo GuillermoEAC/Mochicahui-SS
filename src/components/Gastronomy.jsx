@@ -4,7 +4,7 @@ import { Utensils, ChefHat } from "lucide-react";
 
 const Gastronomy = () => {
   return (
-    <section className="py-24 bg-stone-900 relative overflow-hidden">
+    <section id="sabores" className="py-24 bg-stone-900 relative overflow-hidden">
       {/* Fondo decorativo */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 right-0 w-96 h-96 bg-mexico-yellow rounded-full -translate-y-1/2 translate-x-1/2" />

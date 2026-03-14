@@ -4,7 +4,8 @@ import logoMochicahui from "../assets/Logo_Mochicachui.png";
 
 const navLinks = [
   { href: "#historia", label: "Historia" },
-  { href: "#ruta-gastronomica", label: "Gastronomía" },
+  { href: "#ruta-gastronomica", label: "Ruta del Sabor" },
+  { href: "#sabores", label: "Sabores" },
   { href: "#eventos", label: "Eventos" },
   { href: "#galeria", label: "Galería" },
   { href: "#ubicacion", label: "Ubicación" },
