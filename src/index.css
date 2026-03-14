@@ -1,9 +1,24 @@
+/* ── Fuentes Google ─────────────────────────────────────────────────────── */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Merriweather:wght@400;700;900&display=swap");
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* ── Tailwind v4 ────────────────────────────────────────────────────────── */
+@import "tailwindcss";
 
+/* ── Tokens personalizados (equivalente a tailwind.config.js en v4) ─────── */
+@theme {
+  /* Colores mexicanos */
+  --color-mexico-pink: #E4007C;
+  --color-mexico-yellow: #FFD700;
+  --color-mexico-blue: #005A9C;
+  --color-mexico-clay: #B54B26;
+  --color-off-white: #F9FAFB;
+
+  /* Tipografías */
+  --font-serif: "Merriweather", serif;
+  --font-sans: "Inter", sans-serif;
+}
+
+/* ── Global ─────────────────────────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
 }
